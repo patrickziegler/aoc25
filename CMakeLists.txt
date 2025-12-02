@@ -14,7 +14,8 @@ find_package(GTest REQUIRED)
 add_executable(${TARGET_NAME})
 
 target_sources(${TARGET_NAME} PRIVATE
-    "day1.cpp")
+    "day1.cpp"
+    "day2.cpp")
 
 target_link_libraries(${TARGET_NAME}
     GTest::GTest GTest::Main)
@@ -24,3 +25,5 @@ gtest_discover_tests(${TARGET_NAME})
 enable_testing()
 
 configure_file("${CMAKE_SOURCE_DIR}/day1_input_rotations.txt" "${CMAKE_BINARY_DIR}/day1_input_rotations.txt" COPYONLY)
+
+configure_file("${CMAKE_SOURCE_DIR}/day2_input_ranges.txt" "${CMAKE_BINARY_DIR}/day2_input_ranges.txt" COPYONLY)
