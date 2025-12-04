@@ -4,12 +4,10 @@
 
 #include <gtest/gtest.h>
 
-constexpr static const size_t ASCII_ZERO = 48;
-
 auto output_joltage(const std::string& item, const std::string::const_iterator& it1, const size_t count) -> size_t {
     if (count == 0) { return 0; }
     const auto it2 = std::max_element(it1, item.end() - count + 1);
-    return (*it2 - ASCII_ZERO) * std::pow(10, count - 1) + output_joltage(item, it2 + 1, count - 1);
+    return (*it2 - '0') * std::pow(10, count - 1) + output_joltage(item, it2 + 1, count - 1);
 }
 
 auto total_output_joltage(std::istream& input, size_t count) {
