@@ -4,7 +4,7 @@
 #include <gtest/gtest.h>
 
 auto read_ranges(std::istream& input) {
-    std::vector<std::pair<size_t,size_t>> ranges_unsort;
+    std::vector<std::pair<size_t,size_t>> ranges;
     std::string item;
     size_t a, b;
     char c;
@@ -14,27 +14,27 @@ auto read_ranges(std::istream& input) {
         }
         std::stringstream ss{item};
         ss >> a >> c >> b;
-        ranges_unsort.emplace_back(a, b);
+        ranges.emplace_back(a, b);
     }
-    std::sort(ranges_unsort.begin(), ranges_unsort.end());
-    decltype(ranges_unsort) ranges;
-    bool merged;
-    for (const auto& [a, b] : ranges_unsort) {
-        merged = false;
-        for (size_t i=0; i < ranges.size(); ++i) {
-            if (a >= ranges[i].first && a <= ranges[i].second) {
-                if (b > ranges[i].second) {
-                    ranges[i].second = b;
+    std::sort(ranges.begin(), ranges.end());
+    decltype(ranges) merged;
+    bool isNewRange;
+    for (const auto& [a, b] : ranges) {
+        isNewRange = true;
+        for (size_t i=0; i < merged.size(); ++i) {
+            if (a >= merged[i].first && a <= merged[i].second) {
+                if (b > merged[i].second) {
+                    merged[i].second = b;
                 }
-                merged = true;
+                isNewRange = false;
                 break;
             }
         }
-        if (!merged) {
-            ranges.emplace_back(a, b);
+        if (isNewRange) {
+            merged.emplace_back(a, b);
         }
     }
-    return ranges;
+    return merged;
 }
 
 auto count_fresh_items(std::istream& input) {
