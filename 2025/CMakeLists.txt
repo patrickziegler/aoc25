@@ -9,7 +9,8 @@ target_sources(${TARGET_NAME} PRIVATE
     "day2.cpp"
     "day3.cpp"
     "day4.cpp"
-    "day5.cpp")
+    "day5.cpp"
+    "day6.cpp")
 
 target_link_libraries(${TARGET_NAME}
     GTest::GTest GTest::Main)
@@ -28,3 +29,5 @@ configure_file("day4_input_paper_rolls.txt"
     "${CMAKE_CURRENT_BINARY_DIR}/day4_input_paper_rolls.txt" COPYONLY)
 configure_file("day5_input_database.txt"
     "${CMAKE_CURRENT_BINARY_DIR}/day5_input_database.txt" COPYONLY)
+configure_file("day6_input_worksheet.txt"
+    "${CMAKE_CURRENT_BINARY_DIR}/day6_input_worksheet.txt" COPYONLY)
